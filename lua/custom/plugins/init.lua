@@ -11,9 +11,9 @@ return {
     config = function()
       require('oil').setup {
         default_file_explorer = true,
-        columns = { 'icons' },
+        columns = { 'icon' },
         view_options = {
-          show_hidden = true,
+          show_hidden = false,
         },
       }
       vim.keymap.set('n', '<leader>pv', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
@@ -128,6 +128,17 @@ return {
         '<cmd>:LazyGit<cr>',
         desc = 'Lazygit',
       },
+    },
+  },
+
+  -- stay-centered
+  {
+    'arnamak/stay-centered.nvim',
+    lazy = false,
+    opts = {
+      enabled = true,
+      allow_scroll_move = true,
+      disabled_on_mouse = true,
     },
   },
 

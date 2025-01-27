@@ -1,4 +1,4 @@
---[[
+--[[init
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -361,13 +361,18 @@ require('lazy').setup({
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
-        --
         -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
+        --   -- `hidden = true` is not supported in text grep commands.
+        --   vimgrep_arguments = unpack(require('telescope.config').values.vimgrep_arguments),
         -- },
-        -- pickers = {}
+        pickers = {
+          -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+          find_files = {
+            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+            find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+          },
+        },
+        --
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -629,6 +634,7 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'prettierd',
         'prettier',
+        'biome',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -679,11 +685,12 @@ require('lazy').setup({
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true, require_cwd = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true, require_cwd = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true, require_cwd = true },
+        json = { 'prettierd', require_cwd = true },
+        css = { 'prettierd', require_cwd = true },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
@@ -855,7 +862,40 @@ require('lazy').setup({
       -- vim.g.gruvbox_material_colors_override = { bg0 = '#16181A' } -- #0e1010
       -- vim.g.gruvbox_material_better_performance = 1
 
-      vim.cmd.colorscheme 'gruvbox-material'
+      -- vim.cmd.colorscheme 'gruvbox-material'
+    end,
+  },
+
+  -- catppuccin
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    init = function()
+      require('catppuccin').setup {
+        flavour = 'mocha',
+        transparent_background = true,
+        no_italic = true,
+        no_bold = true,
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          treesitter = true,
+          notify = false,
+          mini = {
+            enabled = true,
+            indentscope_color = '',
+          },
+          which_key = true,
+          mason = true,
+          telescope = {
+            enabled = true,
+            style = 'nvchad',
+          },
+        },
+      }
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
 
