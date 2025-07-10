@@ -33,9 +33,9 @@ return {
       custom_highlights = {},
       default_integrations = true,
       integrations = {
-        blink_cmp = {
-          style = "bordered",
-        },
+        -- blink_cmp = {
+        --   style = "bordered",
+        -- },
         snacks = {
           enabled = false,
           indent_scope_color = "",
