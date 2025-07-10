@@ -1,0 +1,12 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.have_nerd_font = true
+vim.o.undofile = true
+vim.o.clipboard = "unnamedplus"
+vim.o.laststatus = 0
+vim.o.scroll = 10
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = -1
+vim.opt.number = true
+vim.opt.relativenumber = true
