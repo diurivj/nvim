@@ -43,7 +43,7 @@ return {
         cmp = true,
         gitsigns = true,
         treesitter = true,
-        notify = false,
+        notify = true,
         mini = {
           enabled = true,
           indentscope_color = "",
